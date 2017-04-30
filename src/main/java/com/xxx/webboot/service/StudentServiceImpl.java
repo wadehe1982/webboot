@@ -3,13 +3,18 @@ package com.xxx.webboot.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import com.google.common.collect.Lists;
 import com.xxx.webboot.entity.Student;
 import com.xxx.webboot.mapper.StudentMapper;
 import com.xxx.webboot.model.StudentDTO;
+import com.xxx.webboot.repository.StudentQueryDslRepository;
 import com.xxx.webboot.repository.StudentRepository;
 
 @Service
@@ -20,6 +25,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+
+	@Autowired
+	private StudentQueryDslRepository studentQueryDslRepository;
 
 	@Override
 	@Transactional
@@ -60,6 +69,24 @@ public class StudentServiceImpl implements StudentService {
 		System.out.println(saved1);
 //		System.out.println(saved2);
 		
+	}
+
+	@Override
+	@Transactional
+	public Page<Student> findByName(String name, PageRequest pageRequest) {
+		if(StringUtils.isEmpty(name)){
+			return null;
+		}
+		return studentQueryDslRepository.findByName(name, pageRequest);
+	}
+
+	@Override
+	@Transactional
+	public List<Student> findByName(String name) {
+		if(StringUtils.isEmpty(name)){
+			return Lists.newArrayList();
+		}
+		return studentQueryDslRepository.findByName(name);
 	}
 
 }

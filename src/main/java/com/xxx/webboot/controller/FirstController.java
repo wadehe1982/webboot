@@ -3,6 +3,8 @@ package com.xxx.webboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,6 @@ import com.google.common.collect.ImmutableList;
 import com.xxx.webboot.entity.Student;
 import com.xxx.webboot.model.StudentDTO;
 import com.xxx.webboot.model.UserDTO;
-import com.xxx.webboot.repository.StudentQueryDslRepository;
 import com.xxx.webboot.service.StudentService;
 
 @Controller
@@ -25,14 +26,22 @@ public class FirstController {
 	@Autowired
 	private UserDTO userDTO;
 	
-	@Autowired
-	private StudentQueryDslRepository studentQueryDslRepository;
 
 	@RequestMapping("test")
 	@ResponseBody
 	public String test() {
 		
-		List<Student> students = studentQueryDslRepository.findByName("test_name1");
+		PageRequest pageRequest = new PageRequest(0, 2);
+		
+		Page<Student> students = studentService.findByName("test_name1",pageRequest);
+		
+		System.out.println("total pages: " + students.getTotalPages());
+		
+		System.out.println("total hasNext: " + students.hasNext());
+		
+		System.out.println("total hasPrevious: " + students.hasPrevious());
+		
+		System.out.println("total getContent: " + students.getContent());
 		
 		System.out.println(students);
 		

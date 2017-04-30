@@ -2,9 +2,13 @@ package com.xxx.webboot.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
+import com.querydsl.jpa.JPQLQuery;
 import com.xxx.webboot.entity.QStudent;
 import com.xxx.webboot.entity.Student;
 
@@ -23,5 +27,16 @@ implements StudentQueryDslRepository{
 	public List<Student> findByName(String name) {
 		return from(qStudent).where(qStudent.name.eq(name)).fetch();
 	}
+
+	@Override
+	public Page<Student> findByName(String name, PageRequest pageRequest) {
+		
+		JPQLQuery<Student> countQuery = from(qStudent).where(qStudent.name.eq(name));
+		
+		JPQLQuery<Student> query = this.getQuerydsl().applyPagination(pageRequest, countQuery);
+		List<Student> total = query.fetch();
+		return new PageImpl<>(total, pageRequest, countQuery.fetchCount());
+	}
+
 
 }
