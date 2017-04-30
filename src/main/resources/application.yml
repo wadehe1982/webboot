@@ -1,10 +1,20 @@
 spring:
   profiles:
     active:
-      - prod
+      - develop
 
 server:
   port: 8080
+
+#disable security check althouth spring-boot-starter-security in class path
+security:
+  user:
+    role:
+      - USER,ADMIN
+  basic:
+    authorize-mode: role
+    enabled: true
+    
 
       
       

@@ -55,10 +55,10 @@ public class StudentServiceImpl implements StudentService {
 		
 		Student saved1 = studentRepository.save(s1);
 		
-		Student saved2 = studentRepository.save(s2);
+//		Student saved2 = studentRepository.save(s2);
 		
 		System.out.println(saved1);
-		System.out.println(saved2);
+//		System.out.println(saved2);
 		
 	}
 

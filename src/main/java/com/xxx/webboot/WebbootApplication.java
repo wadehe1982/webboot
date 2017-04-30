@@ -3,9 +3,9 @@ package com.xxx.webboot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 
-@SpringBootApplication(scanBasePackages={"com.xxx.configure","com.xxx.webboot"})
+@SpringBootApplication(scanBasePackages={"com.xxx.configure","com.xxx.webboot"}, exclude = {SecurityAutoConfiguration.class })
 @EntityScan(basePackages={"com.xxx.webboot.entity"})
 //@EnableJpaRepositories(basePackages = "com.xxx.webboot.repository")
 public class WebbootApplication {
