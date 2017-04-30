@@ -12,6 +12,7 @@ import com.google.common.collect.ImmutableList;
 import com.xxx.webboot.entity.Student;
 import com.xxx.webboot.model.StudentDTO;
 import com.xxx.webboot.model.UserDTO;
+import com.xxx.webboot.repository.StudentQueryDslRepository;
 import com.xxx.webboot.service.StudentService;
 
 @Controller
@@ -23,10 +24,17 @@ public class FirstController {
 	
 	@Autowired
 	private UserDTO userDTO;
+	
+	@Autowired
+	private StudentQueryDslRepository studentQueryDslRepository;
 
 	@RequestMapping("test")
 	@ResponseBody
 	public String test() {
+		
+		List<Student> students = studentQueryDslRepository.findByName("test_name1");
+		
+		System.out.println(students);
 		
 		System.out.println(userDTO);
 		

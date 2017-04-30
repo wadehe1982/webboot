@@ -17,7 +17,7 @@ spring:
 #Keep DEBUG level in develop prifile
 logging:
   level:
-    root: DEBUG
+    root: INFO
     
 #ennable debug mode
 #debug: true
