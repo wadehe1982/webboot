@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.common.collect.ImmutableList;
 import com.xxx.webboot.entity.Student;
 import com.xxx.webboot.model.StudentDTO;
+import com.xxx.webboot.model.UserDTO;
 import com.xxx.webboot.service.StudentService;
 
 @Controller
@@ -17,10 +18,15 @@ public class FirstController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private UserDTO userDTO;
 
 	@RequestMapping("test")
 	@ResponseBody
 	public String test() {
+		
+		System.out.println(userDTO);
 		
 		List<StudentDTO> lists = studentService.findByJdbcTemplate();
 		
