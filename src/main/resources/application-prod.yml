@@ -16,6 +16,18 @@ spring:
 #To enable hikari JMX bean, need to disable this. Or will get jmx bean already register exception.
   jmx:
     enabled: false
+    
+  kafka:
+    bootstrap-servers:
+      - localhost: 9092
+    consumer:
+      group-id: myKafkaGroup
+    template:
+      default-topic: myTopic
+    listener:
+      concurrency: 3
+    producer:
+      batch-size: 1000
       
 #Keep INFO level in develop prifile
 logging:

@@ -15,6 +15,18 @@ spring:
       register-mbeans: true
       pool-name: myHikari
       
+  kafka:
+    bootstrap-servers:
+      - localhost: 9092
+    consumer:
+      group-id: myKafkaGroup
+    template:
+      default-topic: myTopic
+    listener:
+      concurrency: 3
+    producer:
+      batch-size: 1000
+      
   jpa:
     show-sql: true
 #To enable hikari JMX bean, need to disable this. Or will get jmx bean already register exception.
@@ -24,7 +36,7 @@ spring:
 #Keep DEBUG level in develop prifile
 logging:
   level:
-    root: DEBUG
+    root: INFO
     
 #ennable debug mode
 #debug: true
