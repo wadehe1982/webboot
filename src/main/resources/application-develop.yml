@@ -10,14 +10,21 @@ spring:
       maximum-pool-size: 20
       minimum-idle: 2
       connection-timeout: 2000
+      #MBean (JMX) Monitoring and Management,
+      #In order to use JMX, you must set the pool property registerMbeans=true.
+      register-mbeans: true
+      pool-name: myHikari
       
   jpa:
     show-sql: true
+#To enable hikari JMX bean, need to disable this. Or will get jmx bean already register exception.
+  jmx:
+    enabled: false
     
 #Keep DEBUG level in develop prifile
 logging:
   level:
-    root: INFO
+    root: DEBUG
     
 #ennable debug mode
 #debug: true
