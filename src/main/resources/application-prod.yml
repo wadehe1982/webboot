@@ -36,3 +36,7 @@ logging:
       
   jpa:
     show-sql: false
+   
+server:
+#context path
+  context-path: /myboot
