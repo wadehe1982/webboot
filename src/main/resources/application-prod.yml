@@ -40,3 +40,9 @@ logging:
 server:
 #context path
   context-path: /myboot
+  
+#Full authentication is required to access actuator endpoints.
+#add spring security or disable security
+management:
+  security:
+    enabled: false
