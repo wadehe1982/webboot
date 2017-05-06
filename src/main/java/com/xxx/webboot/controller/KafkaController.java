@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.xxx.webboot.client.KafkaClient;
 
 @Controller
-public class SecondController {
+public class KafkaController {
 	
 	@Autowired
 	private KafkaClient kafkaClient;
@@ -17,4 +17,5 @@ public class SecondController {
 		kafkaClient.sendMessage2KafkaTopic();
 		return "xxx";
 	}
+	
 }
