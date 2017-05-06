@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+    #Note: this is the client of spring cloud config, to use this founction, need to start up 
+    # spring config server side: configserver, or to disable this set enabled to false.
+    #read https://github.com/wadehe1982/cloudconfig/project-dev.properties
+      uri: http://localhost:9999/configserver/
+      name: myboot
+      profile: dev
+      enabled: true
+      
