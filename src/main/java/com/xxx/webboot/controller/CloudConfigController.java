@@ -1,7 +1,7 @@
 package com.xxx.webboot.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +24,11 @@ public class CloudConfigController {
 	 * Note: If this failed to load properties, consider start up
 	 * Spring cloud config side configserver or just disable this.
 	 */
-	@Autowired
+//	@Autowired
 	private Environment environment;
 	
-	@Value("${mysqldb.datasource.username}")
+	//TODO to use this,need to start up configserver
+//	@Value("${mysqldb.datasource.username}")
 	private String name;
 	
 	@RequestMapping(name = "test")
