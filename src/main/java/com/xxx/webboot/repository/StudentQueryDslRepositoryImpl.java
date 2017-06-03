@@ -7,7 +7,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import com.xxx.webboot.entity.QStudent;
 import com.xxx.webboot.entity.Student;
@@ -31,7 +33,12 @@ implements StudentQueryDslRepository{
 	@Override
 	public Page<Student> findByName(String name, PageRequest pageRequest) {
 		
-		JPQLQuery<Student> countQuery = from(qStudent).where(qStudent.name.eq(name));
+		BooleanBuilder builder = new BooleanBuilder();
+		if (!StringUtils.isEmpty(name)){
+			builder.and(qStudent.name.eq(name));
+		}
+		
+		JPQLQuery<Student> countQuery = from(qStudent).where(builder);
 		
 		JPQLQuery<Student> query = this.getQuerydsl().applyPagination(pageRequest, countQuery);
 		List<Student> total = query.fetch();
