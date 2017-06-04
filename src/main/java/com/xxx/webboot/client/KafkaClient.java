@@ -40,7 +40,6 @@ public class KafkaClient {
 			
 			@Override
 			public boolean isInterestedInSuccess() {
-				// TODO Auto-generated method stub
 				return false;
 			}
 		});
